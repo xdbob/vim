@@ -1,4 +1,3 @@
-
 "
 " YouCompleteMe options
 "
@@ -28,9 +27,9 @@ let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 let g:ycm_confirm_extra_conf = 1
 
 "[ 'same-buffer', 'horizontal-split', 'vertical-split', 'new-tab' ]
-let g:ycm_goto_buffer_command = 'same-buffer'
+let g:ycm_goto_buffer_command = 'new-tab'
 let g:ycm_filetype_whitelist = { '*': 1 }
 let g:ycm_key_invoke_completion = '<C-Space>'
 
-
-nnoremap <F11> :YcmForceCompileAndDiagnostics <CR>
+nnoremap <F5> :YcmForceCompileAndDiagnostics <CR>
+nnoremap <F11> :YcmCompleter GoTo <CR>
