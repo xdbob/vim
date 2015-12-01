@@ -1,3 +1,4 @@
 NerdTree : arborescence de fichiers (https://github.com/scrooloose/nerdtree)
 #syntastic : Meilleur coloration syntaxique (removed)
-YouCompleteMe : Autocompletion 
+YouCompleteMe : Autocompletion
+better-whitespace : coloration des trailing whitespaces
