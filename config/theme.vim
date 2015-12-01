@@ -1,0 +1,2 @@
+colorscheme badwolf
+" colorscheme solarized
