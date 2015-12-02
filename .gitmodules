@@ -10,9 +10,6 @@
 [submodule "bundle/YouCompleteMe"]
 	path = bundle/YouCompleteMe
 	url = https://github.com/Valloric/YouCompleteMe
-[submodule "bundle/BetterWhitespace"]
-	path = bundle/BetterWhitespace
-	url = https://github.com/ntpeters/vim-better-whitespace
 [submodule "bundle/h2cppx"]
 	path = bundle/h2cppx
 	url = https://github.com/xuqix/h2cppx.git
