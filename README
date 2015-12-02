@@ -1,0 +1,6 @@
+Pour installer : créer un lien entre vimrc et ~/.vimrc
+Raccourcis vim ajoutés :
+  * <space> => ouvrir/fermer les regroupements.
+  * <F4> => générer le fichier c++ à partir du header.
+  * <F5> => Forcer la détection d'erreur c++.
+  * <F11> => Goto implémentation.
