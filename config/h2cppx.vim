@@ -5,6 +5,6 @@ let g:h2cppx_python_path = 'python2'
 let g:h2cppx_postfix = 'cc'
 
 "Template utilisé (0 -> 4)
-let g:h2cppx_template = 'template1'
+let g:h2cppx_template = 'template0'
 
 nmap <F4> :H2cppx<ESC>
