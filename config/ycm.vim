@@ -31,5 +31,9 @@ let g:ycm_goto_buffer_command = 'new-tab'
 let g:ycm_filetype_whitelist = { '*': 1 }
 let g:ycm_key_invoke_completion = '<C-Space>'
 
+" Autoclose the info window showing while navigating in the completion list.
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
+
 nnoremap <F5> :YcmForceCompileAndDiagnostics <CR>
 nnoremap <F11> :YcmCompleter GoTo <CR>
