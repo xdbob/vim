@@ -1,5 +1,6 @@
-NerdTree : arborescence de fichiers (https://github.com/scrooloose/nerdtree)
-#syntastic : Meilleur coloration syntaxique (removed)
-YouCompleteMe : Autocompletion
-better-whitespace : coloration des trailing whitespaces
-h2cppx : génère les fichiers d'implémentation c++.
+NerdTree: arborescence de fichiers (https://github.com/scrooloose/nerdtree)
+#syntastic: Meilleur coloration syntaxique (removed)
+YouCompleteMe: Autocompletion
+better-whitespace: coloration des trailing whitespaces
+h2cppx: génère les fichiers d'implémentation c++.
+hemisu: color-sceme.
