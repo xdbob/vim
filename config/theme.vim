@@ -1,4 +1,4 @@
-" colorscheme badwolf
+colorscheme badwolf
 " colorscheme solarized
-set background=dark
-colorscheme hemisu
+" set background=dark
+" colorscheme hemisu
