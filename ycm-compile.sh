@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ ! -d bundle/YouCompleteMe ]; then
+if [ ! -e bundle/YouCompleteMe/install.py ]; then
   echo YouCompleteMe not found...
   echo Have you run \"git submodule update --init --recursive\" ?
   exit 1;
