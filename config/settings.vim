@@ -1,11 +1,9 @@
-set number 			" Numéro de ligne
-filetype plugin indent on 	" filetype-specific indent files
-syntax on 			" Coloration syntaxique
+set number			" Numéro de ligne
+filetype plugin indent on	" filetype-specific indent files
+syntax on			" Coloration syntaxique
 
 set encoding=utf-8 fileencodings=
 
-set backspace=2
-set shiftwidth=2 		" Taille de l'auto-indent
 set showcmd			" Affiche la commande dans barre du bas
 set cursorline			" Surligne la ligne du curseur
 set wildmenu			" autocomplétion visuelle pour les commandes
