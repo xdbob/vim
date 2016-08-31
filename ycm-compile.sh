@@ -12,7 +12,7 @@ cd bundle/YouCompleteMe
 ARGS="--clang-completer"
 
 echo -n "Is mono present ? "
-which mono > /dev/null
+which xbuild > /dev/null && which mono > /dev/null
 if [ $? -eq 0 ]; then
 	echo "yes"
 	ARGS="${ARGS} --omnisharp-completer"
