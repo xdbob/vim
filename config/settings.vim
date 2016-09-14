@@ -11,8 +11,6 @@ set lazyredraw			" Actualise la console uniquement si necessaire
 set showmatch			" Surligne les [{()}] correspondants
 set incsearch			" Recherche en temps réel
 set hlsearch			" Surligne les matchs
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%81v.\+/
 
 " Espaces en fin de ligne + tabs
 set list listchars=tab:»·,trail:·
