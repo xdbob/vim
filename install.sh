@@ -33,4 +33,8 @@ checkfail
 ln -s $dir/vimrc $HOME/.vimrc
 checkfail
 
+echo Installing vim-go
+vim -c GoInstallBinaries -c q
+checkfail
+
 exit 0
