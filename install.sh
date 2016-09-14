@@ -30,11 +30,17 @@ if [ -z $dir ]; then
 fi
 rm -f $HOME/.vimrc
 checkfail
-ln -s $dir/vimrc $HOME/.vimrc
+ln -s $dir/init.vim $HOME/.vimrc
 checkfail
 
 echo Installing vim-go
 vim -c GoInstallBinaries -c q
+checkfail
+
+echo Linkging current dir to ~/.config/nvim
+mkdir -p $HOME/.config
+checkfail
+ln -s $dir $HOME/.config/nvim
 checkfail
 
 exit 0
