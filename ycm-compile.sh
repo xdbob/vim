@@ -1,5 +1,8 @@
 #!/bin/sh
 
+BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd $BASEDIR
+
 if [ ! -e bundle/YouCompleteMe/install.py ]; then
 	echo YouCompleteMe not found...
 	echo Have you run \"git submodule update --init --recursive\" ?
