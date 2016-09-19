@@ -32,6 +32,15 @@ else
 	echo "no"
 fi
 
+echo -n "Is clang present ? "
+which clang > /dev/null
+if [ $? -eq 0 ]; then
+	echo "yes"
+	ARGS="${ARGS} --system-libclang"
+else
+	echo "no"
+fi
+
 python2 install.py $ARGS
 
 exit $?
