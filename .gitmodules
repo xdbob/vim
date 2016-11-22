@@ -13,6 +13,7 @@
 [submodule "bundle/h2cppx"]
 	path = bundle/h2cppx
 	url = https://github.com/xdbob/h2cppx.git
+	branch = vim-port
 [submodule "bundle/Hemisu"]
 	path = bundle/Hemisu
 	url = https://github.com/noahfrederick/vim-hemisu
