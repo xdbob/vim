@@ -15,7 +15,7 @@ cd bundle/YouCompleteMe || exit 2
 ARGS="--clang-completer"
 
 echo -n "Is mono present ? "
-if which xbuild > /dev/null && which mono > /dev/null; then
+if which xbuild &> /dev/null && which mono &> /dev/null; then
 	echo "yes"
 	ARGS="${ARGS} --omnisharp-completer"
 else
@@ -23,7 +23,7 @@ else
 fi
 
 echo -n "Is go present ? "
-if which go > /dev/null; then
+if which go &> /dev/null; then
 	echo "yes"
 	ARGS="${ARGS} --gocode-completer"
 else
@@ -31,7 +31,7 @@ else
 fi
 
 echo -n "Is clang present ? "
-if which clang > /dev/null; then
+if which clang &> /dev/null; then
 	echo "yes"
 	ARGS="${ARGS} --system-libclang"
 else
