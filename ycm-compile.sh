@@ -38,7 +38,7 @@ else
 	echo "no"
 fi
 
-REV=$(git rev-parse HEAD)
+REV="$(git rev-parse HEAD)$(clang --version | head -n 1)"
 BFILE="$BASEDIR/.ycm_build"
 if [ -f "$BFILE" ] && [ "$1" != "-f" ]; then
 	OPTS=$(tail -n 1 "$BFILE")
