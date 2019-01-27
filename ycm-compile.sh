@@ -38,15 +38,23 @@ else
 	echo "no"
 fi
 
-REV="$(git rev-parse HEAD)$(clang --version | head -n 1)"
-BFILE="$BASEDIR/.ycm_build"
-if [ -f "$BFILE" ] && [ "$1" != "-f" ]; then
-	OPTS=$(tail -n 1 "$BFILE")
-	REV_FILE=$(head -n 1 "$BFILE")
-	if [ "$REV" = "$REV_FILE" ] && [ "$OPTS" = "$ARGS" ]; then
-		echo "Nothing to do..."
-		exit 0
+should_update() {
+	REV="$(git rev-parse HEAD)"
+	REV="${REV}$(clang --version | head -n 1)"
+	BFILE="$BASEDIR/.ycm_build"
+	if [ -f "$BFILE" ] && [ "$1" != "-f" ]; then
+		OPTS=$(tail -n 1 "$BFILE")
+		REV_FILE=$(head -n 1 "$BFILE")
+		if [ "$REV" = "$REV_FILE" ] && [ "$OPTS" = "$ARGS" ]; then
+			return 1
+		fi
 	fi
+	return 0
+}
+
+if ! should_update $@; then
+	echo "Nothing do do..."
+	exit 0
 fi
 
 rm -f "$BFILE"
