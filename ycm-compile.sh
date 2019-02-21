@@ -17,7 +17,7 @@ ARGS="--clang-completer"
 echo -n "Is mono present ? "
 if which xbuild &> /dev/null && which mono &> /dev/null; then
 	echo "yes"
-	ARGS="${ARGS} --omnisharp-completer"
+	ARGS="${ARGS} --cs-completer"
 else
 	echo "no"
 fi
@@ -58,7 +58,7 @@ if ! should_update $@; then
 fi
 
 rm -f "$BFILE"
-eval "python2 install.py $ARGS"
+eval "python3 install.py $ARGS"
 ERR=$?
 
 if [ $ERR -eq 0 ]; then
