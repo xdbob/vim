@@ -30,10 +30,26 @@ else
 	echo "no"
 fi
 
-echo -n "Is clang present ? "
-if which clang &> /dev/null; then
+echo -n "Is clangd present ? "
+if which clangd &> /dev/null; then
+	echo "yes"
+	ARGS="${ARGS} --clangd-completer"
+else
+	echo "no"
+fi
+
+echo -n "Is clang7 present ? "
+if [ "$(clang --version | head -n 1 | cut -d' ' -f 3 | cut -d'.' -f 1)" -ge "7" ]; then
 	echo "yes"
 	ARGS="${ARGS} --system-libclang"
+else
+	echo "no"
+fi
+
+echo -n "Is RUST present ? "
+if which rustc cargo &> /dev/null; then
+	echo "yes"
+	ARGS="${ARGS} --rust-completer"
 else
 	echo "no"
 fi
