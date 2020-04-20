@@ -14,3 +14,5 @@ set hlsearch			" Surligne les matchs
 
 " Espaces en fin de ligne + tabs
 set list listchars=tab:»·,trail:·
+
+set term=xterm-256color
