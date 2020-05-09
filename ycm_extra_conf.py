@@ -95,23 +95,24 @@ def make_cflags_absolute(flags, working_dir):
 
 def find_nearest(path, target, builddirs=None, maxdepth=os.path.expanduser('~')):
     def _find_nearest(path, target, builddirs, maxdepth):
-        parent = os.path.dirname(os.path.abspath(path))
-        if parent == maxdepth:
-            return None
         candidate = os.path.join(path, target)
         if os.path.exists(candidate):
             logging.info(f'Found {target} at {candidate}')
             return candidate
         if builddirs is not None:
             for build in builddirs:
-                candidate = os.path.join(parent, build, target)
+                candidate = os.path.join(path, build, target)
                 if os.path.exists(candidate):
-                    logging.info(f'Found {target} in builddir {os.path.join(parent, build)}')
+                    logging.info(f'Found {target} in builddir {os.path.join(path, build)}')
                     return candidate
+        parent = os.path.dirname(os.path.abspath(path))
+        if parent == maxdepth:
+            return None
         return _find_nearest(parent, target, builddirs, maxdepth)
     maxdepth = os.path.abspath(maxdepth)
     if not os.path.abspath(path).startswith(maxdepth):
-        return None
+        # Let's explore path and only path
+        return _find_nearest(path, target, builddirs, os.path.dirname(path))
     return _find_nearest(path, target, builddirs, os.path.dirname(maxdepth))
 
 database = None
@@ -149,6 +150,8 @@ def Settings(filename, language, **kwargs):
                     flags = BASE_FLAGS + C_FLAGS
         return {'flags': flags}
     if language == 'python':
-        # TODO: handle venv
-        return {'interpreter_path': '/usr/bin/python3'}
+        # TODO: venv project config file
+        venv = find_nearest(root, 'bin/python', ['env', 'venv', '.venv'])
+        logging.info(f'venv: {venv}')
+        return {'interpreter_path': venv if venv else '/usr/bin/python3'}
     return {}
