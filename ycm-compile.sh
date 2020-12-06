@@ -57,6 +57,7 @@ fi
 should_update() {
 	REV="$(git rev-parse HEAD)"
 	REV="${REV}$(clang --version | head -n 1)"
+	REV="${REV}$(python -c 'import sys; print(f"{sys.version_info.major}.{sys.version_info.minor}")')"
 	BFILE="$BASEDIR/.ycm_build"
 	if [ -f "$BFILE" ] && [ "$1" != "-f" ]; then
 		OPTS=$(tail -n 1 "$BFILE")
