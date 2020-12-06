@@ -1,5 +1,9 @@
-import os.path
+# TODO: look inside /tmp
 import logging
+import os.path
+import shutil
+
+logger = logging.getLogger('extra_config')
 
 BASE_FLAGS = [
     '-Wall',
@@ -97,13 +101,13 @@ def find_nearest(path, target, builddirs=None, maxdepth=os.path.expanduser('~'))
     def _find_nearest(path, target, builddirs, maxdepth):
         candidate = os.path.join(path, target)
         if os.path.exists(candidate):
-            logging.info(f'Found {target} at {candidate}')
+            logger.info(f'Found {target} at {candidate}')
             return candidate
         if builddirs is not None:
             for build in builddirs:
                 candidate = os.path.join(path, build, target)
                 if os.path.exists(candidate):
-                    logging.info(f'Found {target} in builddir {os.path.join(path, build)}')
+                    logger.info(f'Found {target} in builddir {os.path.join(path, build)}')
                     return candidate
         parent = os.path.dirname(os.path.abspath(path))
         if parent == maxdepth:
@@ -121,16 +125,17 @@ def load_db(root, filename):
     import ycm_core
     database_path = find_nearest(root, 'compile_commands.json', BUILD_DIRS)
     if not database_path:
+        logger.info('no compile_commands.json found')
         return None
     database_dir = os.path.dirname(database_path)
-    logging.info(f'Compilation database found at {database_dir}')
+    logger.info(f'Compilation database found at {database_dir}')
     database = ycm_core.CompilationDatabase(database_dir)
     if not database:
-        logging.info('Unable to load compilation database')
+        logger.warn('Unable to load compilation database')
         return None
     compilation_infos = database.GetCompilationInfoForFile(filename)
     if not compilation_infos:
-        logging.warn(f'No compilation info for {filename} in compilation database')
+        logger.warn(f'No compilation info for {filename} in compilation database')
         return None
     return make_cflags_absolute(compilation_infos.compiler_flags_,
                                 compilation_infos.compiler_working_dir_)
@@ -138,9 +143,11 @@ def load_db(root, filename):
 
 def Settings(filename, language, **kwargs):
     root = os.path.realpath(filename)
+    logger.info(f'extra config loading: {filename}')
 
     if language == 'cfamily':
         filename = find_source_from_file(filename)
+        logger.debug(f'matching source file: {filename}')
         flags = load_db(root, filename)
         if not flags:
             if is_source_file(filename):
@@ -151,7 +158,9 @@ def Settings(filename, language, **kwargs):
         return {'flags': flags}
     if language == 'python':
         # TODO: venv project config file
-        venv = find_nearest(root, 'bin/python', ['env', 'venv', '.venv'])
-        logging.info(f'venv: {venv}')
-        return {'interpreter_path': venv if venv else '/usr/bin/python3'}
+        python = find_nearest(root, 'bin/python', ['env', 'venv', '.venv'])
+        logger.info(f'venv: {python}')
+        if python is None:
+            python = shutil.which('python3')
+        return {'interpreter_path': python}
     return {}
