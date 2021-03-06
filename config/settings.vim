@@ -16,3 +16,5 @@ set hlsearch			" Surligne les matchs
 set list listchars=tab:»·,trail:·
 
 set term=xterm-256color
+
+set directory=~/.cache/vim
