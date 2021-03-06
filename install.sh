@@ -13,11 +13,6 @@ echo Updating submodules.
 git submodule update --init --recursive
 checkfail
 
-echo Installing h2cppx dependancies.
-./h2cppx-postinstall.sh
-checkfail
-echo "> Done."
-
 echo Compiling YouCompleteMe...
 ./ycm-compile.sh
 checkfail
