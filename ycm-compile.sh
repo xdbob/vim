@@ -38,8 +38,14 @@ else
 	echo "no"
 fi
 
+if which clang &>/dev/null; then
+	CLANG_VERSION="$(clang --version | head -n 1 | cut -d' ' -f 3)"
+else
+	CLANG_VERSION="0"
+fi
+
 echo -n "Is clang7 present ? "
-if [ "$(clang --version | head -n 1 | cut -d' ' -f 3 | cut -d'.' -f 1)" -ge "7" ]; then
+if [ "$(cut -d'.' -f 1 <<< "${CLANG_VERSION}")" -ge "7" ]; then
 	echo "yes"
 	ARGS="${ARGS} --system-libclang"
 else
@@ -56,8 +62,8 @@ fi
 
 should_update() {
 	REV="$(git rev-parse HEAD)"
-	REV="${REV}$(clang --version | head -n 1)"
-	REV="${REV}$(python -c 'import sys; print(f"{sys.version_info.major}.{sys.version_info.minor}")')"
+	REV="${REV}+${CLANG_VERSION}"
+	REV="${REV}+$(python -c 'import sys; print(f"{sys.version_info.major}.{sys.version_info.minor}")')"
 	BFILE="$BASEDIR/.ycm_build"
 	if [ -f "$BFILE" ] && [ "$1" != "-f" ]; then
 		OPTS=$(tail -n 1 "$BFILE")
