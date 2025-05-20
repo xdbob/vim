@@ -55,7 +55,7 @@ fi
 echo -n "Is RUST present ? "
 if which rustc cargo &> /dev/null; then
 	echo "yes"
-	ARGS="${ARGS} --rust-completer"
+	ARGS="${ARGS} --rust-completer --rust-toolchain-version=stable"
 else
 	echo "no"
 fi
